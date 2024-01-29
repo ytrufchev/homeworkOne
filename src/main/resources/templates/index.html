@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://thymeleaf.org" style="padding: 0; margin:0; height: 100%;">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Homework One Home Page</title>
+</head>
+<style th:inline="css" type="text/css" media="screen, print">
+    @font-face {
+    font-family: "Roboto";
+    font-weight: normal;
+    src: url('https://fonts.gstatic.com/s/roboto/v27/KFOmCnqEu92Fr1Mu4mxK.woff2') format('woff2');
+    }
+    @media screen and (max-width: 800px) {
+        .mainView {
+            flex-direction: column;
+            justify-content: top;
+            align-items: center;
+            max-height: 100vh;
+        }
+    }
+    .mainView {
+        background: rgb(255,255,255); background: linear-gradient(343deg, rgba(255,255,255,1) 0%, rgba(0,208,132,1) 100%); display: flex; padding: 0; margin: 0; width: 100vw; height: 100vh; justify-content: center; align-items: center; overflow: scroll;
+    }
+    .tasks {
+        display: flex; background-color: rgba(255,255,255,0.46); height: 20vw; width: 20vw; border: 1.5px, white; margin: 4vw; justify-content: center; align-items: center; border-radius: 25px; font-size: 24; font-family: Roboto; min-width: 200px; min-height: 200px; overflow-y: auto; flex: 1;
+    }
+    @import url('https://fonts.googleapis.com/css?family=Exo:400,700');
+
+    *{
+        margin: 0px;
+        padding: 0px;
+    }
+
+    body{
+        font-family: Roboto;
+    }
+    .circles{
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+
+    .circles li{
+        position: absolute;
+        display: block;
+        list-style: none;
+        width: 20px;
+        height: 20px;
+        background: rgba(255, 255, 255, 0.2);
+        animation: animate 25s linear infinite;
+        bottom: -150px;
+
+    }
+
+    .circles li:nth-child(1){
+        left: 25%;
+        width: 80px;
+        height: 80px;
+        animation-delay: 0s;
+    }
+
+
+    .circles li:nth-child(2){
+        left: 10%;
+        width: 20px;
+        height: 20px;
+        animation-delay: 2s;
+        animation-duration: 12s;
+    }
+
+    .circles li:nth-child(3){
+        left: 70%;
+        width: 20px;
+        height: 20px;
+        animation-delay: 4s;
+    }
+
+    .circles li:nth-child(4){
+        left: 40%;
+        width: 60px;
+        height: 60px;
+        animation-delay: 0s;
+        animation-duration: 18s;
+    }
+
+    .circles li:nth-child(5){
+        left: 65%;
+        width: 20px;
+        height: 20px;
+        animation-delay: 0s;
+    }
+
+    .circles li:nth-child(6){
+        left: 75%;
+        width: 110px;
+        height: 110px;
+        animation-delay: 3s;
+    }
+
+    .circles li:nth-child(7){
+        left: 35%;
+        width: 150px;
+        height: 150px;
+        animation-delay: 7s;
+    }
+
+    .circles li:nth-child(8){
+        left: 50%;
+        width: 25px;
+        height: 25px;
+        animation-delay: 15s;
+        animation-duration: 45s;
+    }
+
+    .circles li:nth-child(9){
+        left: 20%;
+        width: 15px;
+        height: 15px;
+        animation-delay: 2s;
+        animation-duration: 35s;
+    }
+
+    .circles li:nth-child(10){
+        left: 85%;
+        width: 150px;
+        height: 150px;
+        animation-delay: 0s;
+        animation-duration: 11s;
+    }
+
+
+
+    @keyframes animate {
+
+        0%{
+            transform: translateY(0) rotate(0deg);
+            opacity: 1;
+            border-radius: 0;
+        }
+
+        100%{
+            transform: translateY(-1000px) rotate(720deg);
+            opacity: 0;
+            border-radius: 50%;
+        }
+    }
+
+    h1 {
+        text-align: center;
+    }
+    .tasks {
+        display: flex;
+        flex-direction: column; /* Change to column layout */
+        background-color: rgba(255,255,255,0.46);
+        padding: 20px; /* Add padding for better spacing */
+        border-radius: 25px;
+        font-family: Roboto;
+        margin: 10px; /* Adjust margin */
+        max-width: 20vw; /* Set maximum width */
+    }
+
+    .inputField, .btn {
+        border: 2px solid black;
+        border-radius: 25px;
+        text-decoration: none;
+        background-color: white;
+        height: auto;
+        margin-top: 10px;
+        padding: 5px 10px;
+    }
+</style>
+<body>
+<div class="mainView">
+    <ul class="circles">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+    <div class="tasks" onclick="location.href='messi'" style="z-index:999">
+        <text th:text="|Messi|"></text>
+    </div>
+    <div class="tasks" style="z-index:999; flex-direction: column;">
+        <center><text th:text="|Select a team|"></text></br></center>
+        <center><select class="inputField" id="dropdown" style="z-index: 999; margin-top: 10px;">
+            <option value="default">-----------------</option>
+            <option value="manUnited">Manchester United</option>
+            <option value="Liverpool">Liverpool</option>
+        </select></center>
+    </div>
+    </br>
+    <div class="tasks">
+        <form th:action="@{/print-numbersoneton}" method="get" onclick="event.stopPropagation()" style="z-index:999">
+            <center><text>Numbers from 1 on N</text></br></center>
+            <center><label for="inputN">Enter N:</label></br></center>
+            <input type="text" class="inputField" id="inputN" name="n"></br>
+            <center><button class="btn" type="submit">Submit</button></center>
+        </form>
+    </div>
+    <div class="tasks">
+        <form th:action="@{/print-numbersntom}" method="get" onclick="event.stopPropagation()" style="z-index:999">
+            <center><text>Numbers from N to M</text></br></center>
+            <center><label for="inputN">Enter N:</label></br></center>
+            <input type="text" class="inputField" id="inputN" name="n">
+            <center><label for="inputM">Enter M:</label></br></center>
+            <input type="text" class="inputField" id="inputM" name="m"></br>
+            <center><button class="btn" type="submit">Submit</button></center>
+        </form>
+    </div>
+</div>
+</body>
+<script>
+    document.getElementById('dropdown').addEventListener('change', function() {
+        var selectedOption = this.value;
+        if (selectedOption) {
+            window.location.href = "team?team="+selectedOption;
+        }
+    });
+</script>
+</html>
